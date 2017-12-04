@@ -12,8 +12,8 @@ import java.util.List;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
-@WebServlet(name = "HelloAppEngine", value = "/")
-public class HelloAppEngine extends HttpServlet {
+@WebServlet(name = "HelloServlet", value = "/")
+public class HelloServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -23,7 +23,7 @@ public class HelloAppEngine extends HttpServlet {
 		ofy().save().entity(example).now();
 
 		// list existing entities
-		List<ExampleEntity> entities = ofy().load().type(ExampleEntity.class).list();
+		List<ExampleEntity> entities = ofy().load().type(ExampleEntity.class).order("created").list();
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -32,11 +32,11 @@ public class HelloAppEngine extends HttpServlet {
 		out.println("<body>");
 		out.println("<h1>Hello App Engine</h1>");
 		out.printf("<p>Running on Java version %s</p>\n", System.getProperty("java.version"));
-		out.println("<ul>");
+		out.println("<pre>");
 		for (ExampleEntity entity : entities) {
-			out.printf("<li>%s : %s</li>\n", entity.getId(), entity.getCreated());
+			out.printf("%s %s\n", entity.getId(), entity.getCreated());
 		}
-		out.println("</ul>");
+		out.println("</pre>");
 		out.println("</body>");
 		out.println("</html>");
 	}

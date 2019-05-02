@@ -23,7 +23,7 @@ public class HelloServlet extends HttpServlet {
 		ofy().save().entity(example).now();
 
 		// list existing entities
-		List<ExampleEntity> entities = ofy().load().type(ExampleEntity.class).order("created").list();
+		List<ExampleEntity> entities = ofy().load().type(ExampleEntity.class).order("created").limit(20).list();
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -32,8 +32,10 @@ public class HelloServlet extends HttpServlet {
 		out.println("<body>");
 		out.println("<h1>Hello App Engine</h1>");
 		out.printf("<p>Running on Java version %s</p>\n", System.getProperty("java.version"));
+		out.println("<pre><p>There are %s stored entities</p></pre>");
 		out.println("<pre>");
 		for (ExampleEntity entity : entities) {
+			out.printf("<p>Details of the last 20 entities created:</p>\n");
 			out.printf("%s %s\n", entity.getId(), entity.getCreated());
 		}
 		out.println("</pre>");

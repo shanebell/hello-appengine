@@ -8,5 +8,7 @@ bin/
 
 *.iml
 .idea
+.vscode
+.factorypath
 
 .DS_Store

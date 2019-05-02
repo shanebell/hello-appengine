@@ -22,6 +22,18 @@ public class HelloServlet extends HttpServlet {
 		ExampleEntity example = new ExampleEntity();
 		ofy().save().entity(example).now();
 
+		int delay = 0;
+		String queryString = request.getQueryString();
+		if(queryString != null && queryString.length() > 0) {
+			delay = Integer.parseInt(queryString.substring(2));				
+		}
+			
+		try {
+			Thread.sleep(delay);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
 		// list existing entities
 		List<ExampleEntity> entities = ofy().load().type(ExampleEntity.class).order("-created").limit(20).list();
 		int total = ofy().load().type(ExampleEntity.class).keys().list().size();

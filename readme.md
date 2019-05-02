@@ -17,4 +17,17 @@ To deploy this to a new Google Cloud project follow these steps:
     - `mvn appengine:deploy`
 - Confirm the new version is deployed from `App Engine > Versions` 
 
+## Query parameters
+The app supports an optional query string `s` to specify a delay in the response. i.e. `http://localhost:8080?s=1000` will delay the response for 1 sec.
 
+## Local dev
+To test the app locally, open your local terminal and run: 
+```
+mvn appengine:run
+```
+
+## Load test
+To load test the app and see Appengine austoscaling, you can run: 
+```
+seq 100000 | parallel -i -j 60 curl -s -o /dev/null -w "{}:" https://<myappid>.appspot.com/?s=1000
+```

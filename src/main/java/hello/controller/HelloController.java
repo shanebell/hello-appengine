@@ -1,11 +1,14 @@
 package hello.controller;
 
+import com.google.appengine.api.taskqueue.TaskHandle;
 import hello.model.ExampleEntity;
+import hello.service.TaskService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
@@ -13,23 +16,25 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 @RestController
 public class HelloController {
 
+	private final TaskService taskService;
+
+	public HelloController(TaskService taskService) {
+		this.taskService = taskService;
+	}
+
 	@GetMapping(value = "/", produces = MediaType.TEXT_PLAIN_VALUE)
-	public String hello(HttpServletRequest request) {
+	public String hello(@RequestParam(value = "delay", required = false, defaultValue = "0") int delay) {
 
 		// save a new entity
 		ExampleEntity example = new ExampleEntity();
 		ofy().save().entity(example).now();
 
-		int delay = 0;
-		String queryString = request.getQueryString();
-		if(queryString != null && queryString.length() > 0) {
-			delay = Integer.parseInt(queryString.substring(2));
-		}
-
-		try {
-			Thread.sleep(delay);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		if (delay > 0) {
+			try {
+				Thread.sleep(delay);
+			} catch (InterruptedException e) {
+				// ignore
+			}
 		}
 
 		// list existing entities
@@ -45,6 +50,22 @@ public class HelloController {
 		}
 
 		return builder.toString();
+	}
+
+	@GetMapping(value = "/queue-task", produces = MediaType.APPLICATION_JSON_VALUE)
+	public TaskHandle queueTask() {
+		TaskHandle taskHandle = taskService.queueTask();
+		return taskHandle;
+	}
+
+	@GetMapping(value = "/queue-tasks", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Object queueTasks() {
+		List<TaskHandle> taskHandles = new ArrayList<>();
+		for (int i=0; i<10; i++) {
+			TaskHandle taskHandle = taskService.queueTask();
+			taskHandles.add(taskHandle);
+		}
+		return taskHandles;
 	}
 
 }

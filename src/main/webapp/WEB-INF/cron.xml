@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cronentries>
+
+    <!--
+    <cron>
+        <url>/cron/backup</url>
+        <description>Weekly backup</description>
+        <schedule>every monday 03:00</schedule>
+        <timezone>Australia/NSW</timezone>
+    </cron>
+    -->
+
+</cronentries>

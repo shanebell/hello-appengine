@@ -64,16 +64,4 @@ public class HelloController {
 		return taskHandle;
 	}
 
-	@PostMapping(value = "/queue-tasks", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Object queueTasks() {
-		LOGGER.info("Queuing multiple tasks");
-
-		List<TaskHandle> taskHandles = new ArrayList<>();
-		for (int i=0; i<10; i++) {
-			TaskHandle taskHandle = taskService.queueTask();
-			taskHandles.add(taskHandle);
-		}
-		return taskHandles;
-	}
-
 }

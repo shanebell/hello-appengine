@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<queue-entries>
+
+    <queue>
+        <name>default</name>
+        <mode>push</mode>
+        <rate>5/s</rate>
+        <retry-parameters>
+            <task-retry-limit>20</task-retry-limit>
+            <!--
+            <min-backoff-seconds>30</min-backoff-seconds>
+            <max-doublings>5</max-doublings>
+            -->
+        </retry-parameters>
+    </queue>
+
+</queue-entries>

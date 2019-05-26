@@ -23,24 +23,22 @@ public class TaskController {
 	}
 
 	@PostMapping(value = "/hello", produces = MediaType.TEXT_PLAIN_VALUE)
-	public String handleTask(
-			@RequestHeader(value = "X-AppEngine-QueueName", required = false) String queueName,
-			@RequestHeader(value = "X-AppEngine-TaskName", required = false) String taskName,
-			@RequestHeader(value = "X-AppEngine-TaskRetryCount", required = false) String retryCount,
-			@RequestHeader(value = "X-AppEngine-TaskExecutionCount", required = false) String executionCount
+	public void handleTask(
+			@RequestHeader("X-AppEngine-QueueName") String queueName,
+			@RequestHeader("X-AppEngine-TaskName") String taskName,
+			@RequestHeader("X-AppEngine-TaskRetryCount") int retryCount,
+			@RequestHeader("X-AppEngine-TaskExecutionCount") int executionCount
 	) {
 		LOGGER.info("Handling task - queueName: {}, taskName: {}, executionCount: {}, retryCount: {}", queueName, taskName, executionCount, retryCount);
 
-		// simulated failure
-		if (System.currentTimeMillis() % 2 == 0) {
+		if (retryCount < 3) {
+			LOGGER.info("Simulating a failure");
 			throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		// save a new entity
+		LOGGER.info("Saving an entity");
 		ExampleEntity example = new ExampleEntity();
 		ofy().save().entity(example).now();
-
-		return "ok";
 	}
 
 }

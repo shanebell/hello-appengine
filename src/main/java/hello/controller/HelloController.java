@@ -5,6 +5,7 @@ import hello.model.ExampleEntity;
 import hello.service.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 public class HelloController {
@@ -29,7 +29,7 @@ public class HelloController {
 		this.taskService = taskService;
 	}
 
-	@GetMapping(value = "/", produces = APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Map<String, Object> hello(@RequestParam(value = "delay", required = false, defaultValue = "0") int delay) {
 		LOGGER.info("Saying hello");
 
@@ -56,7 +56,7 @@ public class HelloController {
 		return response;
 	}
 
-	@PostMapping(value = "/queue-task", produces = APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/queue-task", produces = MediaType.APPLICATION_JSON_VALUE)
 	public TaskHandle queueTask() {
 		LOGGER.info("Queuing a single task");
 
@@ -64,7 +64,7 @@ public class HelloController {
 		return taskHandle;
 	}
 
-	@PostMapping(value = "/queue-tasks", produces = APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/queue-tasks", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Object queueTasks() {
 		LOGGER.info("Queuing multiple tasks");
 

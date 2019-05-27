@@ -29,5 +29,5 @@ mvn appengine:run
 ## Load test
 To load test the app and see Appengine austoscaling, you can run: 
 ```
-seq 100000 | parallel -i -j 60 curl -s -o /dev/null -w "{}:" https://<myappid>.appspot.com/?s=1000
+parallel -i -j 60 curl -s -o /dev/null ${GOOGLE_CLOUD_PROJECT}.appspot.com?delay=1000 -- {1..10000}
 ```

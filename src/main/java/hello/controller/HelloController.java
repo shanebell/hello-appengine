@@ -29,14 +29,17 @@ public class HelloController {
 	}
 
 	@GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Map<String, Object> hello(@RequestParam(value = "delay", required = false, defaultValue = "0") int delay) {
-		LOGGER.info("Saying hello");
-
-		// save a new entity
-		ExampleEntity example = new ExampleEntity();
-		ofy().save().entity(example).now();
+	public Map<String, Object> hello(
+			@RequestParam(value = "delay", required = false, defaultValue = "0") int delay,
+			@RequestParam(value = "error", required = false, defaultValue = "false") boolean error
+	) {
+		if (error) {
+			LOGGER.error("Simulating an error");
+			throw new RuntimeException("There was an error");
+		}
 
 		if (delay > 0) {
+			LOGGER.error("Simulating a delay");
 			try {
 				Thread.sleep(delay);
 			} catch (InterruptedException e) {
@@ -44,10 +47,15 @@ public class HelloController {
 			}
 		}
 
-		// list existing entities
+		LOGGER.info("Saving a new entity");
+		ExampleEntity example = new ExampleEntity();
+		ofy().save().entity(example).now();
+
+		LOGGER.info("Listing 20 most recent entities");
 		List<ExampleEntity> entities = ofy().load().type(ExampleEntity.class).order("-created").limit(20).list();
 		int total = ofy().load().type(ExampleEntity.class).keys().list().size();
 
+		LOGGER.info("Returning JSON response");
 		Map<String, Object> response = new LinkedHashMap<>();
 		response.put("title", "Hello AppEngine");
 		response.put("entityCount", total);
@@ -58,9 +66,7 @@ public class HelloController {
 	@PostMapping(value = "/queue-task", produces = MediaType.APPLICATION_JSON_VALUE)
 	public TaskHandle queueTask() {
 		LOGGER.info("Queuing a single task");
-
-		TaskHandle taskHandle = taskService.queueTask();
-		return taskHandle;
+		return taskService.queueTask();
 	}
 
 }

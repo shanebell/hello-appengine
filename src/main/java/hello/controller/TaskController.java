@@ -26,10 +26,9 @@ public class TaskController {
 	public void handleTask(
 			@RequestHeader("X-AppEngine-QueueName") String queueName,
 			@RequestHeader("X-AppEngine-TaskName") String taskName,
-			@RequestHeader("X-AppEngine-TaskRetryCount") int retryCount,
-			@RequestHeader("X-AppEngine-TaskExecutionCount") int executionCount
+			@RequestHeader("X-AppEngine-TaskRetryCount") int retryCount
 	) {
-		LOGGER.info("Handling task - queueName: {}, taskName: {}, executionCount: {}, retryCount: {}", queueName, taskName, executionCount, retryCount);
+		LOGGER.info("Handling task - queueName: {}, taskName: {}, retryCount: {}", queueName, taskName, retryCount);
 
 		if (retryCount < 3) {
 			LOGGER.info("Simulating a failure");

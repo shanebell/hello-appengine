@@ -23,7 +23,6 @@ public class TaskService {
 		TaskOptions taskOptions = TaskOptions.Builder
 				.withUrl("/task/hello")
 				.method(TaskOptions.Method.POST);
-		TaskHandle taskHandle = defaultQueue.add(taskOptions);
-		return taskHandle;
+		return defaultQueue.add(taskOptions);
 	}
 }

@@ -1,6 +1,6 @@
-package hello.controller;
+package hello.tasks;
 
-import hello.model.ExampleEntity;
+import hello.example.ExampleEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

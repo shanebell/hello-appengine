@@ -1,4 +1,4 @@
-package hello.service;
+package hello.tasks;
 
 import com.google.appengine.api.taskqueue.Queue;
 import com.google.appengine.api.taskqueue.TaskHandle;

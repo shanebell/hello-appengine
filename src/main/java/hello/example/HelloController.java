@@ -1,8 +1,7 @@
-package hello.controller;
+package hello.example;
 
 import com.google.appengine.api.taskqueue.TaskHandle;
-import hello.model.ExampleEntity;
-import hello.service.TaskService;
+import hello.tasks.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;

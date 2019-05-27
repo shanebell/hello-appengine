@@ -1,8 +1,8 @@
-package hello.servlet;
+package hello.config;
 
 import com.googlecode.objectify.ObjectifyFilter;
 import com.googlecode.objectify.ObjectifyService;
-import hello.model.ExampleEntity;
+import hello.example.ExampleEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

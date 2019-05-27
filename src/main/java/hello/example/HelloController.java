@@ -51,8 +51,15 @@ public class HelloController {
 		ofy().save().entity(example).now();
 
 		LOGGER.info("Listing 20 most recent entities");
-		List<ExampleEntity> entities = ofy().load().type(ExampleEntity.class).order("-created").limit(20).list();
-		int total = ofy().load().type(ExampleEntity.class).keys().list().size();
+		List<ExampleEntity> entities = ofy().load()
+				.type(ExampleEntity.class)
+				.order("-created")
+				.limit(20)
+				.list();
+
+		int total = ofy().load()
+				.type(ExampleEntity.class)
+				.count();
 
 		LOGGER.info("Returning JSON response");
 		Map<String, Object> response = new LinkedHashMap<>();

@@ -36,8 +36,9 @@ public class TaskController {
 		}
 
 		LOGGER.info("Saving an entity");
-		ExampleEntity example = new ExampleEntity();
-		ofy().save().entity(example).now();
+		ofy().save()
+			.entity(new ExampleEntity())
+			.now();
 	}
 
 }

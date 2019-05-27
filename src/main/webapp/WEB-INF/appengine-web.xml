@@ -5,4 +5,36 @@
     <system-properties>
         <property name="java.util.logging.config.file" value="WEB-INF/classes/logging.properties"/>
     </system-properties>
+
+    <!--
+
+    INSTANCE TYPE control
+    https://cloud.google.com/appengine/pricing
+    (on the table change the region to Sydney in blue header)
+
+        B1              128mb   600mhz  $0.068
+        B2              256mb   1.2ghz  $0.135
+        B4              512mb   2.4ghz  $0.270
+        B4_1G           1024mb  2.4ghz  $0.405
+        B8              1024mb  4.8ghz  $0.540
+        F1 (default)    128mb   600mhz  $0.068
+        F2              256mb   1.2ghz  $0.135
+        F4              512mb   2.4ghz  $0.270
+        F4_1G           1024mb  2.4ghz  $0.405
+
+        https://cloud.google.com/appengine/docs/standard/#instance_classes
+        F = autoscaled
+        B = manual scaling
+
+        Recommend minimum size of F2 for memory with Spring
+
+    -->
+
+    <!--
+    <instance-class>F4</instance-class>
+    <automatic-scaling>
+        <min-instances>1</min-instances>
+    </automatic-scaling>
+    -->
+
 </appengine-web-app>

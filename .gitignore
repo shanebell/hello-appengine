@@ -1,14 +1,6 @@
-target/
-classes/
-bin/
-
-.classpath
-.settings
-.project
-
+credentials.json
+node_modules
+hello-appengine.iml
 *.iml
 .idea
-.vscode
-.factorypath
-
 .DS_Store

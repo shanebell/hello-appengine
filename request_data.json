@@ -1,0 +1,43 @@
+{
+  "fields": [
+    {
+      "name": "date",
+      "type": "TIMESTAMP"
+    },
+    {
+      "name": "protocol",
+      "type": "STRING"
+    },
+    {
+      "name": "method",
+      "type": "STRING"
+    },
+    {
+      "name": "hostname",
+      "type": "STRING"
+    },
+    {
+      "name": "ip",
+      "type": "STRING"
+    },
+    {
+      "name": "path",
+      "type": "STRING"
+    },
+    {
+      "name": "headers",
+      "type": "RECORD",
+      "mode": "REPEATED",
+      "fields": [
+        {
+          "name": "name",
+          "type": "STRING"
+        },
+        {
+          "name": "value",
+          "type": "STRING"
+        }
+      ]
+    }
+  ]
+}

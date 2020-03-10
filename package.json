@@ -1,0 +1,30 @@
+{
+  "name": "hello-appengine",
+  "version": "1.0.0",
+  "description": "NodeJS application to run on Google App Engine",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3wks/hello-appengine.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/3wks/hello-appengine/issues"
+  },
+  "homepage": "https://github.com/3wks/hello-appengine#readme",
+  "dependencies": {
+    "@google-cloud/bigquery": "^4.7.0",
+    "@google-cloud/logging-bunyan": "^2.0.3",
+    "@google-cloud/tasks": "^1.8.0",
+    "body-parser": "^1.19.0",
+    "bunyan": "^1.8.12",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "luxon": "^1.22.0"
+  }
+}

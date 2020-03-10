@@ -21,9 +21,10 @@ To deploy this to a new Google Cloud project follow these steps:
     - `POST /task`
 
 ## Local dev
-To test the app locally, open your local terminal and run: 
+To test the app locally, open your local terminal and run:
+- Follow the instructions [here](https://cloud.google.com/docs/authentication/getting-started) to download a service account credential file and save in the local directory as `credentials.json` 
 - `npm i`
-- `npm start`
+- `GOOGLE_APPLICATION_CREDENTIALS=./credentials.json npm start`
 
 ## Load test
 To load test the app and see App Engine auto-scaling, you can run: 

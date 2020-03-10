@@ -1,6 +1,6 @@
 # Hello App Engine
 
-This is a simple Google App Engine web application using Java 8.
+This is a simple Google App Engine web application using NodeJS 10.
 
 To deploy this to a new Google Cloud project follow these steps:
 
@@ -8,10 +8,9 @@ To deploy this to a new Google Cloud project follow these steps:
 - Launch the Google Cloud Shell
 - Run the following commands
     - `gcloud app create`
-    - `git clone https://github.com/3wks/hello-appengine.git`
+    - `git clone https://github.com/shanebell/hello-appengine.git`
     - `cd hello-appengine`
     - `gcloud services enable cloudtasks.googleapis.com`
-    - `npm i`
     - `gcloud app deploy`
 - Once the deployment is complete you can confirm the application is running by navigating to `App Engine > Versions` in the Google Cloud Console. Click on the link under `Version` to open the application in your browser.
 - Bootstrap the application by requesting `/bootstrap`

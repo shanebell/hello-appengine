@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/3wks/hello-appengine.git"
+    "url": "git+https://github.com/shanebell/hello-appengine.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/3wks/hello-appengine/issues"
+    "url": "https://github.com/shanebell/hello-appengine/issues"
   },
-  "homepage": "https://github.com/3wks/hello-appengine#readme",
+  "homepage": "https://github.com/shanebell/hello-appengine#readme",
   "dependencies": {
     "@google-cloud/bigquery": "^4.7.0",
     "@google-cloud/logging-bunyan": "^2.0.3",

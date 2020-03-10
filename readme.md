@@ -7,7 +7,7 @@ To deploy this to a new Google Cloud project follow these steps:
 - Create a brand new Google Cloud Project
 - Launch the Google Cloud Shell
 - Run the following commands
-    - `gcloud app create`
+    - `gcloud app create --region australia-southeast1`
     - `gcloud services enable cloudtasks.googleapis.com`
     - `git clone https://github.com/shanebell/hello-appengine.git`
     - `cd hello-appengine`

@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const _ = require("lodash");
 
 // paths to ignore when logging inbound requests
-const EXCLUDED_PATHS = ["/favicon.ico "];
+const EXCLUDED_PATHS = ["/favicon.ico"];
 
 const app = express();
 app.set("view engine", "ejs");

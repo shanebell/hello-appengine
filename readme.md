@@ -9,14 +9,13 @@ To deploy this to a new Google Cloud project:
 - Run the following commands:
     - `gcloud app create --region australia-southeast1`
     - `gcloud services enable cloudtasks.googleapis.com`
+    - `gcloud services enable firestore.googleapis.com`
     - `git clone https://github.com/shanebell/hello-appengine.git`
     - `cd hello-appengine`
     - `gcloud app deploy`
 - Once the deployment is complete you can confirm the application is running by navigating to `App Engine > Versions` in the Google Cloud Console. Click on the link under `Version` to open the application in your browser.
-- Bootstrap the application by requesting `https://<PROJECT_ID>.appspot.com/bootstrap`
 - You can request any HTTP method on any path of the application and the request details will be captured and sent to BigQuery. Note that the following paths are special and will not trigger the request to be logged:
     - `GET /`
-    - `GET /bootstrap`
     - `POST /task`
 
 ## Local dev

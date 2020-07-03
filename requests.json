@@ -25,6 +25,21 @@
       "type": "STRING"
     },
     {
+      "name": "query",
+      "type": "RECORD",
+      "mode": "REPEATED",
+      "fields": [
+        {
+          "name": "name",
+          "type": "STRING"
+        },
+        {
+          "name": "value",
+          "type": "STRING"
+        }
+      ]
+    },
+    {
       "name": "headers",
       "type": "RECORD",
       "mode": "REPEATED",

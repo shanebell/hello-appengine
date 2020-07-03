@@ -10,6 +10,7 @@ To deploy this to a new Google Cloud project:
     - `gcloud app create --region australia-southeast1`
     - `gcloud services enable cloudtasks.googleapis.com`
     - `gcloud services enable firestore.googleapis.com`
+    - `gcloud alpha firestore databases create --region=australia-southeast1`
     - `git clone https://github.com/shanebell/hello-appengine.git`
     - `cd hello-appengine`
     - `gcloud app deploy`

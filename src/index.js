@@ -63,7 +63,7 @@ app.all(
 
     if (!EXCLUDED_PATHS.includes(req.path)) {
       const data = {
-        date: DateTime.local().toString(),
+        date: DateTime.utc().toString(),
         protocol: req.protocol,
         method: req.method,
         hostname: req.hostname,

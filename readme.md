@@ -8,9 +8,8 @@ To deploy this to a new Google Cloud project:
 - Launch the Google Cloud Shell
 - Run the following commands:
     - `gcloud app create --region australia-southeast1`
-    - `gcloud services enable cloudtasks.googleapis.com`
-    - `gcloud services enable firestore.googleapis.com`
-    - `gcloud alpha firestore databases create --region=australia-southeast1`
+    - `gcloud services enable cloudtasks.googleapis.com firestore.googleapis.com`
+    - `gcloud firestore databases create --region=australia-southeast1`
     - `git clone https://github.com/shanebell/hello-appengine.git`
     - `cd hello-appengine`
     - `gcloud app deploy`
@@ -27,4 +26,4 @@ To run the app locally:
 
 ## Load test
 To load test the app and see App Engine auto-scaling, you can run: 
-- `seq 1000 | parallel -j 60 curl -s -o /dev/null https://<PROJECT_ID>.appspot.com/test`
+- `seq 1000 | parallel -i -j 60 curl -s -o /dev/null -w "{}:" "https://<PROJECT_ID>.appspot.com/test?load={}"`
